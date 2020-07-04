@@ -13,13 +13,14 @@ void setup()
   lcd.backlight();
   lcd.setCursor(2, 1); 
   lcd.print("Turn CCW"); 
+  delay(3000);
 }
 void loop()
 {
-  digitalWrite(MotorPin2, LOW); 
-  digitalWrite(MotorPin3, HIGH); 
-  Serial.println("Motor left");
-  delay(2000);
+  digitalWrite(MotorPin2, HIGH); 
+  digitalWrite(MotorPin3, LOW); 
+  Serial.println("Motor Right");
+  delay(3000);
 }
 
 
