@@ -69,20 +69,44 @@ void loop()
   lcd.print(" void loop(){ ");
   lcd.clear(); // ล้างหน้าจอ
   delay(200);
-  tone(buzzer, 800); // Send 1KHz sound signal...
+  tone(buzzer, 800); 
   delay(500);        
-  noTone(buzzer);     // Stop sound...
+  noTone(buzzer);     
  }
-
-
-
-
-void loop(){
-  tone(buzzer, 1000); // Send 1KHz sound signal...
-  delay(1000);        // ...for 1 sec
-  noTone(buzzer);     // Stop sound...
-  delay(1000);        // ...for 1sec
+ 
+ 
+ ข้อ7
+ 
+ 
+#include <Bounce2.h>
+#define NUM_BUTTONS 1
+int MotorPin2 = 2;
+int MotorPin3 = 3;
+void setup() 
+{
+  for (int i = 0; i < NUM_BUTTONS; i++) {
+  buttons[i].attach( BUTTON_PINS[i] , INPUT_PULLUP );
+  pinMode(MotorPin2, OUTPUT);
+  pinMode(MotorPin3, OUTPUT);
+  Serial.begin(9600);
+  buttons[i].interval(50);  
 }
+void loop() 
+{
+  for (int i = 0; i < NUM_BUTTONS; i++)  {
+  buttons[i].update();
+  bool button_state = buttons[i].read();
+  if(last_button_state > button_state) {
+  Serial.println("Falling edge");
+  digitalWrite(MotorPin2, HIGH);
+  digitalWrite(MotorPin3, LOW);
+  for (int x = 0; x < 100; x+20) {
+ }
+  last_button_state = button_state;
+}
+
+
+
 
 
 
