@@ -1,22 +1,33 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 LiquidCrystal_I2C lcd(0x27, 16, 2);
-const int buzzer = 9; 
+int MotorPin2 = 2;
+int MotorPin3 = 3;
 
 void setup()
 {
-  pinMode(buzzer, OUTPUT); 
+  pinMode(MotorPin2, OUTPUT);
+  pinMode(MotorPin3, OUTPUT);
+  Serial.begin(9600);
   lcd.begin();
   lcd.backlight();
   lcd.setCursor(2, 1); 
-  lcd.print("Hello MDT"); 
+  lcd.print("Turn CCW"); 
 }
 void loop()
 {
-  tone(buzzer, 800); 
-  delay(400);        
-  noTone(buzzer);    
+  digitalWrite(MotorPin2, LOW); 
+  digitalWrite(MotorPin3, HIGH); 
+  Serial.println("Motor left");
+  delay(2000);
 }
+
+
+
+
+
+
+
   
   
  
